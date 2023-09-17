@@ -2,7 +2,7 @@ POST http://localhost:3000/videos
 Content-Type: application/json
 
 {
-    "title": "video 1",
+    "title": "video node",
     "description": "esse é o 1",
     "duration": 100
 }
@@ -10,7 +10,7 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:3000/videos
+GET http://localhost:3000/videos?search=node
 
 
 ###
