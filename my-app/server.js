@@ -1,9 +1,47 @@
-import { createServer } from "node:http";
+import { fastify } from "fastify";
+import { DatabaseMemory } from './database-memory.js'
 
-const server = createServer((req, res)=>{
-    console.log("Oi")
+const database = new DatabaseMemory()
 
-    return res.write('oi')
+const server = fastify()
+
+server.get("/videos", ()=> {
+    const videos = database.list()
+
+    return videos
 })
 
-server.listen(3000)
+server.post("/videos", (request, reply)=> {
+    const { title, description, duration } = request.body
+
+    database.create({
+        title,
+        description,
+        duration
+    })
+    return reply.status(201).send()
+})
+
+server.put("/videos/:id", (request, reply)=> {
+    const videosId = request.params.id
+    const { title, description, duration } = request.body
+
+    database.update(videosId, {
+        title,
+        description,
+        duration
+    })
+    return reply.status(204).send()
+})
+
+server.delete("/videos/:id", (request, reply)=> {
+    const videoId = request.params.id
+
+    database.delete(videoId)
+
+    return reply.status(204).send()
+})
+
+server.listen({
+    port: 3000
+})
