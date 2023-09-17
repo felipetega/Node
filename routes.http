@@ -1,4 +1,4 @@
-POST http://localhost:3000/videos
+POST https://node-drab-ten.vercel.app/videos
 Content-Type: application/json
 
 {
@@ -10,11 +10,11 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:3000/videos
+GET https://node-drab-ten.vercel.app/videos
 
 
 ###
-PUT http://localhost:3000/videos/e9554112-b27a-4c57-b727-d6c81d3bb987
+PUT https://node-drab-ten.vercel.app/videos/e9554112-b27a-4c57-b727-d6c81d3bb987
 Content-Type: application/json
 
 {
@@ -26,4 +26,4 @@ Content-Type: application/json
 ###
 
 
-DELETE http://localhost:3000/videos/e9554112-b27a-4c57-b727-d6c81d3bb987
+DELETE https://node-drab-ten.vercel.app/videos/e9554112-b27a-4c57-b727-d6c81d3bb987
