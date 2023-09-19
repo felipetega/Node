@@ -10,3 +10,5 @@ npm i tsx -D
 package.json - scripts
 
 npm i fastify
+
+npm install eslint -D
