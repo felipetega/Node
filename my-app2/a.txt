@@ -7,8 +7,18 @@ tsconfig.json - target:ES2020
 
 npm i tsx -D
 
-package.json - scripts
+package.json
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "lint": "eslint src --ext .ts --fix"
+  },
 
 npm i fastify
 
 npm install eslint -D
+
+npx eslint --init
+ou
+npm i @rocketseat/eslint-config -D
+
+.eslintrc.json
