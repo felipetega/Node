@@ -1,0 +1,12 @@
+npm init -y
+npm i typescript -D
+npm i @types/node -D
+npx tsc --init
+
+tsconfig.json - target:ES2020
+
+npm i tsx -D
+
+package.json - scripts
+
+npm i fastify
