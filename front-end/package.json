@@ -12,7 +12,6 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "dev": "npm run start",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -35,6 +34,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "proxy": "http://localhost:3000"
+  }
 }
