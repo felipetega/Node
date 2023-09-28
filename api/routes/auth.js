@@ -1,11 +1,9 @@
 const express = require("express");
 const router = express.Router();
+const bcrypt = require("bcrypt");
+const User = require("../models/User");
 
-// POST request to /auth/login
-router.post("/login", (req, res) => {
-  // Handle login logic here
-  res.send("Login route");
-});
+// ...
 
 // POST request to /auth/register
 router.post("/register", async (req, res) => {
@@ -18,10 +16,13 @@ router.post("/register", async (req, res) => {
       return res.status(400).json({ message: "User already exists" });
     }
 
-    // Create a new user
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10); // 10 is the number of salt rounds
+
+    // Create a new user with the hashed password
     const newUser = new User({
       username,
-      password, // In a real application, you would hash the password before saving it
+      password: hashedPassword,
       email
     });
 
@@ -34,6 +35,5 @@ router.post("/register", async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
-
 
 module.exports = router;

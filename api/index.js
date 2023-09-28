@@ -14,6 +14,8 @@ mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
   console.error("Error connecting to MongoDB", err);
 });
 
+app.use(express.json()); // Use built-in middleware for parsing JSON
+
 const userRoute = require("./routes/user");
 app.use("/api/users", userRoute)
 
