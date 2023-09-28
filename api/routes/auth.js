@@ -3,8 +3,6 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
 
-// ...
-
 // POST request to /auth/register
 router.post("/register", async (req, res) => {
   const { username, password, email } = req.body;
@@ -30,6 +28,31 @@ router.post("/register", async (req, res) => {
     await newUser.save();
 
     res.status(201).json({ message: "User registered successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
+// POST request to /auth/login
+router.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    // Check if the user exists
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(401).json({ message: "Invalid credentials" });
+    }
+
+    // Compare the provided password with the hashed password in the database
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordValid) {
+      return res.status(401).json({ message: "Invalid credentials" });
+    }
+
+    res.json({ message: "Login successful", user });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal Server Error" });
