@@ -16,13 +16,17 @@ mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
 
 app.use(express.json()); // Use built-in middleware for parsing JSON
 
-const userRoute = require("./routes/user");
-app.use("/api/users", userRoute)
-
+//AUTH
 const authRoute = require("./routes/auth");
 app.use("/api/auth", authRoute)
 
+//USER
+const userRoute = require("./routes/user");
+app.use("/api/users", userRoute)
 
+//PRODUCT
+const productRoute = require("./routes/product");
+app.use("/api/products", productRoute);
 
 app.listen(3000, () => {
   console.log(`Running server`);
