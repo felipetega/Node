@@ -36,6 +36,10 @@ app.use("/api/carts", cartRoute);
 const orderRoute = require("./routes/order");
 app.use("/api/orders", orderRoute);
 
+//STRIPE
+// const stripeRoute = require("./routes/stripe");
+// app.use("/api/checkout", stripeRoute);
+
 app.listen(3000, () => {
   console.log(`Running server`);
 });
