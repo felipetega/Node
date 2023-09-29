@@ -28,6 +28,10 @@ app.use("/api/users", userRoute)
 const productRoute = require("./routes/product");
 app.use("/api/products", productRoute);
 
+//CART
+const cartRoute = require("./routes/cart");
+app.use("/api/carts", cartRoute);
+
 app.listen(3000, () => {
   console.log(`Running server`);
 });
