@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
+const jwt = require("jsonwebtoken");
 
 // POST request to /auth/register
 router.post("/register", async (req, res) => {
@@ -52,7 +53,10 @@ router.post("/login", async (req, res) => {
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
-    res.json({ message: "Login successful", user });
+     // Generate JWT token
+     const token = jwt.sign({ userId: user._id, isAdm: user.isAdm }, process.env.JWT_SECRET, { expiresIn: "1h" });
+
+     res.json({ message: "Login successful", user, token });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal Server Error" });
