@@ -53,14 +53,10 @@ router.post("/login", async (req, res) => {
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
-    // Remove password from user object
-    const { password, ...others } = user._doc;
+     // Generate JWT token
+     const token = jwt.sign({ userId: user._id, isAdm: user.isAdm }, process.env.JWT_SECRET, { expiresIn: "1h" });
 
-    // Generate JWT token
-    const token = jwt.sign({ userId: user._id, isAdm: user.isAdm }, process.env.JWT_SECRET, { expiresIn: "1h" });
-
-    // Send response with user data (excluding password) and access token
-    res.json({ message: "Login successful", user: others, token });
+     res.json({ message: "Login successful", user, token });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal Server Error" });
