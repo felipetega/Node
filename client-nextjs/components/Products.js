@@ -6,7 +6,6 @@ const Products = ({ products }) => {
       {products.map(product => (
         <div key={product._id} className="card max-w-md bg-base-100 shadow-xl mb-4 mx-4">
           <div style={{ position: 'relative', height: '300px' }}>
-            {console.log(product.img)}
             <Image
               src={`/${product.img}`}
               alt={product.title}
@@ -25,7 +24,8 @@ const Products = ({ products }) => {
                 ))}
               </div>
             </div>
-            <p>{product.desc}</p>
+            <p>{product._id}</p>
+            <p>{product.price}</p>
           </div>
         </div>
       ))}
