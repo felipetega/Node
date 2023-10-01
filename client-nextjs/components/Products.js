@@ -1,11 +1,19 @@
-import Image from 'next/image'
+import Image from 'next/image';
 
-const Product = ({ products }) => {
+const Products = ({ products }) => {
   return (
-    <div>
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
       {products.map(product => (
         <div key={product._id} className="card max-w-md bg-base-100 shadow-xl mb-4 mx-4">
-          <img src={product.img} alt={product.title} />
+          <div style={{ position: 'relative', height: '300px' }}>
+            {console.log(product.img)}
+            <Image
+              src={`/${product.img}`}
+              alt={product.title}
+              layout="fill"
+              objectFit="cover"
+            />
+          </div>
           <div className="card-body p-4">
             <div className="flex justify-between">
               <h2 className="card-title text-2xl mb-4">
@@ -25,4 +33,4 @@ const Product = ({ products }) => {
   );
 };
 
-export default Product;
+export default Products;

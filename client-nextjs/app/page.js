@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Category from '@/components/Category';
 import Display from "@/components/Display";
 import CardSection from '@/components/CardSection';
-import Product from '@/components/Product';
+import Products from '@/components/Products';
 
 export default function Home() {
   const [products, setProducts] = useState([]);
@@ -30,9 +30,7 @@ export default function Home() {
       </div>
 
       <div>
-        <CardSection>
-          <Product products={products} />
-        </CardSection>
+          <Products products={products} />
       </div>
     </>
   )
