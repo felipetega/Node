@@ -1,9 +1,17 @@
 import Image from 'next/image';
 
-const Products = ({ products }) => {
+const Products = ({ products, sortOrder }) => {
+  let sortedProducts = [...products];
+
+  if (sortOrder === 'Maior preço') {
+    sortedProducts.sort((a, b) => b.price - a.price);
+  } else if (sortOrder === 'Menor preço') {
+    sortedProducts.sort((a, b) => a.price - b.price);
+  }
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
-      {products.map(product => (
+      {sortedProducts.map(product => (
         <div key={product._id} className="card max-w-md bg-base-100 shadow-xl mb-4 mx-4">
           <div style={{ position: 'relative', height: '300px' }}>
             <Image

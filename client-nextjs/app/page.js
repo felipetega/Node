@@ -26,7 +26,7 @@ export default function Home() {
     <>
       <div className='menu menu-horizontal'>
         <Category />
-        <Display />
+        <Display products={products} />
       </div>
 
       <div>
