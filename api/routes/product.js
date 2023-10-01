@@ -58,6 +58,7 @@ router.get("/find/:id", async (req, res) => {
 
 //GET ALL PRODUCTS
 router.get("/", async (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
   const qNew = req.query.new;
   const qCategory = req.query.category;
   try {

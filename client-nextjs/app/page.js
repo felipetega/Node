@@ -1,37 +1,39 @@
-import Image from 'next/image'
-import Product from '@/components/Product'
-import CardSection from '@/components/CardSection'
-import Category from '@/components/Category'
+'use client'
+import React, { useState, useEffect } from 'react';
+import Category from '@/components/Category';
 import Display from "@/components/Display";
-
+import CardSection from '@/components/CardSection';
+import Product from '@/components/Product';
 
 export default function Home() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/api/products');
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.error('Erro ao buscar produtos:', error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
   return (
-<>
-<div className='menu menu-horizontal'>
-  <Category/>
-  <Display/>
-</div>
+    <>
+      <div className='menu menu-horizontal'>
+        <Category />
+        <Display />
+      </div>
 
-    <div>
-      <CardSection>
-        <Product title="Shoes!" desc="If a dog chews shoes whose shoes does he choose?" img='./vercel.svg' categories={["Fashion", "Products"]} size="M" color="Red" price={49.99} />
-        <Product title="Shoes!" desc="If a dog chews shoes whose shoes does he choose?" img='./vercel.svg' categories={["Fashion", "Products"]} size="M" color="Red" price={49.99} />
-        <Product title="Shoes!" desc="If a dog chews shoes whose shoes does he choose?" img='./vercel.svg' categories={["Fashion", "Products"]} size="M" color="Red" price={49.99} />
-      </CardSection>
-
-      <CardSection>
-        <Product title="Shoes!" desc="If a dog chews shoes whose shoes does he choose?" img='./vercel.svg' categories={["Fashion", "Products"]} size="M" color="Red" price={49.99} />
-        <Product title="Shoes!" desc="If a dog chews shoes whose shoes does he choose?" img='./vercel.svg' categories={["Fashion", "Products"]} size="M" color="Red" price={49.99} />
-        <Product title="Shoes!" desc="If a dog chews shoes whose shoes does he choose?" img='./vercel.svg' categories={["Fashion", "Products"]} size="M" color="Red" price={49.99} />
-      </CardSection>
-
-      <CardSection>
-        <Product title="Shoes!" desc="If a dog chews shoes whose shoes does he choose?" img='./vercel.svg' categories={["Fashion", "Products"]} size="M" color="Red" price={49.99} />
-        <Product title="Shoes!" desc="If a dog chews shoes whose shoes does he choose?" img='./vercel.svg' categories={["Fashion", "Products"]} size="M" color="Red" price={49.99} />
-        <Product title="Shoes!" desc="If a dog chews shoes whose shoes does he choose?" img='./vercel.svg' categories={["Fashion", "Products"]} size="M" color="Red" price={49.99} />
-      </CardSection>
-    </div>
+      <div>
+        <CardSection>
+          <Product products={products} />
+        </CardSection>
+      </div>
     </>
   )
 }
