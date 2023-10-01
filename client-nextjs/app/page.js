@@ -24,14 +24,8 @@ export default function Home() {
 
   return (
     <>
-      <div className='menu menu-horizontal'>
-        <Category />
-        <Display products={products} />
-      </div>
 
-      <div>
           <Products products={products} />
-      </div>
     </>
   )
 }
