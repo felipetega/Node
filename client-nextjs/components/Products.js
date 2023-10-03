@@ -39,7 +39,7 @@ const Products = ({ products }) => {
           </ul>
         </div>
 
-        <div className="dropdown dropdown-bottom mx-2">
+        {/* <div className="dropdown dropdown-bottom mx-2">
           <label tabIndex={0} className="btn m-1">Filtrar por categoria</label>
           <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
             <li><a onClick={handleCategoryChange}>Todos</a></li>
@@ -47,7 +47,7 @@ const Products = ({ products }) => {
               <li key={index}><a onClick={handleCategoryChange}>{category}</a></li>
             ))}
           </ul>
-        </div>
+        </div> */}
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
