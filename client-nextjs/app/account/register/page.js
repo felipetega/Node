@@ -17,7 +17,7 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3000/api/auth/register', {
+      const response = await fetch(process.env.NEXT_PUBLIC_API_AUTH_REGISTER, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -34,7 +34,8 @@ const Register = () => {
     } catch (error) {
       console.error('Internal Server Error', error);
     }
-  }
+}
+
 
   return (
     <div>

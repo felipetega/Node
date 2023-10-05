@@ -8,17 +8,17 @@ export default function Page({ params }) {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/products/find/${params.id}`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_PRODUCTS_FIND}/${params.id}`);
         const data = await response.json();
-        console.log(data);
         setProduct(data);
       } catch (error) {
         console.error('Error fetching product:', error);
       }
     };
-
+  
     fetchProduct();
   }, [params.id]);
+  
 
   console.log(product);
 

@@ -6,7 +6,7 @@ const Account = () => {
 
   const checkEmailExists = async (email) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/auth/account/${email}`);
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_AUTH}/${email}`);
       const data = await response.json();
       if (data.email === email) {
         return true;
@@ -17,6 +17,7 @@ const Account = () => {
       return false;
     }
   }
+  
 
   const handleContinue = async () => {
     const email = document.getElementById('emailInput').value;

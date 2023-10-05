@@ -24,7 +24,7 @@ export default function Home() {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/products');
+        const response = await fetch(process.env.NEXT_PUBLIC_API_PRODUCTS);
         const data = await response.json();
         const categories = Array.from(new Set(data.flatMap(product => product.categories)));
         setAllCategories(categories);
@@ -32,24 +32,25 @@ export default function Home() {
         console.error('Erro ao buscar categorias:', error);
       }
     };
-
+  
     fetchCategories();
   }, []);
+  
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        let url = 'http://localhost:3000/api/products';
-
+        let url = process.env.NEXT_PUBLIC_API_PRODUCTS;
+  
         const params = new URLSearchParams();
         if (categoryFilter) {
           params.append('category', categoryFilter);
         }
-
+  
         if (params.toString()) {
           url += `?${params.toString()}`;
         }
-
+  
         const response = await fetch(url);
         const data = await response.json();
         setProducts(data);
@@ -57,9 +58,10 @@ export default function Home() {
         console.error('Erro ao buscar produtos:', error);
       }
     };
-
+  
     fetchProducts();
   }, [categoryFilter]);
+  
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
