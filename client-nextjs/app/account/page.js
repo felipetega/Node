@@ -21,14 +21,15 @@ const Account = () => {
   const handleContinue = async () => {
     const email = document.getElementById('emailInput').value;
     const exists = await checkEmailExists(email);
-
+  
     if (exists) {
-      window.location.href = '/account/login'; // Redireciona para a página de login
+      window.location.href = `/account/login?email=${encodeURIComponent(email)}`;
     } else {
-      window.location.href = '/account/register'; // Redireciona para a página de registro
+      window.location.href = '/account/register';
     }
-    setEmailExists(exists); // Atualiza o estado após a verificação
-  }
+  
+    setEmailExists(exists);
+  };
 
   return (
     <>
