@@ -13,10 +13,34 @@ const Login = () => {
     }
   }, []);
 
-  const handleLogin = () => {
-    // Aqui você pode enviar o e-mail e a senha para o backend para autenticação
+  const handleLogin = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      });
+  
+      const data = await response.json();
+  
+      if (response.ok) {
+        // Armazena o token no localStorage
+        console.log(data)
+        localStorage.setItem('token', data.token);
+        window.location.href = '/';
+      } else {
+        console.error(data.message);
+      }
+    } catch (error) {
+      console.error('Erro ao fazer login:', error);
+    }
   };
-
+  
   return (
     <>
       <p>Bem-vindo de volta!</p>

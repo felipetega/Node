@@ -8,6 +8,7 @@ const Register = () => {
     email: ''
   });
 
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -26,7 +27,12 @@ const Register = () => {
       });
 
       if (response.ok) {
+        const data = await response.json();
+        // Armazena o token no localStorage
+        localStorage.setItem('token', data.token);
         console.log('User registered successfully');
+        // Redireciona o usuário para a página desejada (por exemplo, '/')
+        window.location.href = '/';
       } else {
         const data = await response.json();
         console.error(data.message);
@@ -34,8 +40,7 @@ const Register = () => {
     } catch (error) {
       console.error('Internal Server Error', error);
     }
-}
-
+  }
 
   return (
     <div>
