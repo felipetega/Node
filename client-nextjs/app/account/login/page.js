@@ -1,7 +1,11 @@
 'use client'
+// components/Login.js
+
 import React, { useState, useEffect } from 'react';
+import { useAuth } from '../../../components/AuthContext';
 
 const Login = () => {
+  const { setUserEmail, setUserName } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -25,13 +29,15 @@ const Login = () => {
           password: password,
         }),
       });
-  
+
       const data = await response.json();
-  
+
       if (response.ok) {
-        // Armazena o token no localStorage
-        console.log(data)
+        setUserEmail(email);
+        setUserName(data.user.username);
         localStorage.setItem('token', data.token);
+        localStorage.setItem('email', email);
+        localStorage.setItem('username', data.user.username);
         window.location.href = '/';
       } else {
         console.error(data.message);
@@ -40,7 +46,7 @@ const Login = () => {
       console.error('Erro ao fazer login:', error);
     }
   };
-  
+
   return (
     <>
       <p>Bem-vindo de volta!</p>
