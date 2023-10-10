@@ -1,5 +1,4 @@
 'use client'
-// components/Navbar.js
 
 import React from 'react';
 import Link from 'next/link';
@@ -8,15 +7,7 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { useAuth } from './AuthContext';
 
 const Navbar = () => {
-  const { userEmail, userName } = useAuth();
-  const isLoggedIn = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
-
-  const handleLogout = () => {
-    if (typeof window !== 'undefined') {
-      localStorage.removeItem('token');
-      window.location.reload();
-    }
-  };
+  const { userEmail, userName, logout, token } = useAuth();
 
   return (
     <nav className="navbar border-b-2 border-primary mb-8 justify-between text-lg font-medium">
@@ -29,7 +20,7 @@ const Navbar = () => {
       </ul>
 
       <ul className="menu menu-horizontal">
-        {isLoggedIn ? (
+        {token ? (
           <>
             <li>
               <Link href={"/profile"}>
@@ -39,7 +30,7 @@ const Navbar = () => {
             </li>
             <li>{userEmail}</li>
             <li>
-              <button onClick={handleLogout}>Deslogar</button>
+              <button onClick={logout}>Deslogar</button>
             </li>
           </>
         ) : (
