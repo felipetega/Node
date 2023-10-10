@@ -8,12 +8,14 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { useAuth } from './AuthContext';
 
 const Navbar = () => {
-  const { userEmail, userName } = useAuth(); // Adicionando o userName
-  const isLoggedIn = localStorage.getItem('token');
+  const { userEmail, userName } = useAuth();
+  const isLoggedIn = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    window.location.reload();
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('token');
+      window.location.reload();
+    }
   };
 
   return (
