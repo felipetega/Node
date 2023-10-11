@@ -10,7 +10,7 @@ const Identify = () => {
 
   const handleContinue = () => {
     if (name && cpf && email && address && selectedDelivery) {
-      window.location.href = '/payment';
+      window.location.href = './payment';
     } else {
       alert('Por favor, preencha todos os campos e selecione a forma de entrega antes de continuar.');
     }

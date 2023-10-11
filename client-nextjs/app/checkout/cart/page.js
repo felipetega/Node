@@ -33,7 +33,7 @@ const Cart = () => {
 
   const handleCheckout = () => {
     // Redireciona para a página de checkout
-    window.location.href = '/identify';
+    window.location.href = './identify';
   };
 
   return (

@@ -26,14 +26,14 @@ export default function Page({ params }) {
     const existingItem = cartItems.find(item => item.id === product.id);
   
     if (existingItem) {
-      window.location.href = '/cart';
+      window.location.href = '../checkout/cart';
       return;
     }
   
     const newItem = { id: product.id, title: product.title, price: product.price, quantity: 1 };
     const updatedCart = [...cartItems, newItem];
     localStorage.setItem('cart', JSON.stringify(updatedCart));
-    window.location.href = '/cart';
+    window.location.href = '../checkout/cart';
   };
 
 
