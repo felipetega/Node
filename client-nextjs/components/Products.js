@@ -45,7 +45,6 @@ const Products = ({ products }) => {
         {sortedProducts.map(product => (
           <div key={product._id} className="card max-w-md bg-base-100 shadow-xl mb-4 mx-4">
             <Link href={`/products/${product._id}`}> {/* Adicione o Link aqui */}
-              <a>
                 <div style={{ position: 'relative', height: '300px' }}>
                   <Image
                     src={`/${product.img}`}
@@ -68,7 +67,6 @@ const Products = ({ products }) => {
                   <p>{product._id}</p>
                   <p>{product.price}</p>
                 </div>
-              </a>
             </Link>
           </div>
         ))}
