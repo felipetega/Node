@@ -11,7 +11,7 @@ const Navbar = () => {
   const { userEmail, userName, logout, token } = useAuth();
 
   return (
-    <nav className="navbar border-b-2 border-primary mb-8 justify-between text-lg font-medium">
+    <nav className="flex items-center p-2 h-10 w-full justify-between text-lg font-medium bg-gray-200">
       <ul className="menu menu-horizontal">
         <Image
           src={`/jordan.svg`}
@@ -40,7 +40,7 @@ const Navbar = () => {
             </li>
 
             <div className="dropdown dropdown-end">
-              <label tabIndex={0} className="btn m-1">Olá, {userName} <FontAwesomeIcon icon={faUser} /></label>
+              <label tabIndex={0} className="btn bg-gray-200">Olá, {userName} <FontAwesomeIcon icon={faUser} /></label>
               <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                 <li><a>Minha conta</a></li>
                 <li><a>Meus pedidos</a></li>
